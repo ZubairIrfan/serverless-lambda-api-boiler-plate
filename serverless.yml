@@ -1,0 +1,49 @@
+service: severless-lambda-api-boiler-plate
+frameworkVersion: "2"
+
+plugins:
+  - serverless-domain-manager
+  - serverless-offline
+  - serverless-prune-plugin
+  - serverless-plugin-split-stacks
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
+  region: ${file(./config.yml):${self:provider.stage}.REGION}
+  timeout: 30
+  stage: ${opt:stage, 'test'}
+  memorySize: 2048
+  versionFunctions: false
+  environment:
+    API_STAGE: ${self:provider.stage}
+    REGION: ${file(./config.yml):${self:provider.stage}.REGION}
+    COGNITO_POOL_ARN: ${file(./cred.yml):${self:provider.stage}.COGNITO_POOL_ARN}
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "cognito-identity:*"
+        - "cognito-idp:*"
+        - "cloudwatch:*"
+        - "logs:*"
+        - "s3:*"
+        - "lambda:*"
+      Resource:
+        - "*"
+
+functions:
+  - ${file(./src/user/user-functions.yml)}
+
+custom:
+  prune:
+    automatic: true
+    number: 2
+
+  splitStacks:
+    perFunction: false
+    perType: true
+    perGroupFunction: false
+  customDomain:
+    domainName: "XYZ.com"

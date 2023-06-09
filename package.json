@@ -1,0 +1,40 @@
+{
+  "name": "boiler-plate",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sls offline start --host 0.0.0.0 --noTimeout --dontPrintOutput --stage test",
+    "deploy-prod": "sls deploy --stage prod",
+    "deploy-test": "sls deploy --stage test"
+  },
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig": {
+    "exec": "npm start"
+  },
+  "devDependencies": {
+    "serverless-domain-manager": "^3.3.1",
+    "serverless-modular": "0.0.61",
+    "serverless-nested-stack": "0.0.7",
+    "serverless-offline": "^6.1.2",
+    "serverless-prune-plugin": "^1.4.2",
+    "serverless-webpack": "^5.3.1",
+    "webpack": "^4.42.1"
+  },
+  "dependencies": {
+    "@hapi/iron": "^6.0.0",
+    "aws-sdk": "^2.656.0",
+    "axios": "^0.20.0",
+    "boom": "^7.3.0",
+    "joi": "^17.3.0",
+    "jwt-decode": "^3.1.2",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.15",
+    "ramda": "^0.27.1",
+    "serialize-error": "^7.0.1",
+    "serverless-plugin-split-stacks": "^1.11.3",
+    "tracer": "^1.1.4",
+    "uuid": "^8.3.2"
+  }
+}

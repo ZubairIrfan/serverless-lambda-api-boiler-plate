@@ -1,0 +1,6 @@
+test:
+  COGNITO_POOL_ARN: "arn:aws:cognito-idp:***"
+
+prod:
+  COGNITO_POOL_ARN: "arn:aws:cognito-idp:***"
+

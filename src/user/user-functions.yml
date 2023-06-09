@@ -1,0 +1,10 @@
+getUserProfile:
+  handler: ./src/user/user-handler.getUserProfile
+  events:
+    - http:
+        method: get
+        path: "user"
+        cors: true
+        authorizer:
+          name: "authorizer"
+          arn: ${file(./cred.yml):${self:provider.stage}.COGNITO_POOL_ARN}

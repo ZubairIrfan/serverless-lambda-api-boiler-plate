@@ -1,0 +1,7 @@
+test:
+  REGION: "us-east-1"
+ 
+prod:
+  REGION: "us-east-1"
+
+ 
